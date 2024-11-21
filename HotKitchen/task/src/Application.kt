@@ -3,7 +3,7 @@ package hotkitchen
 
 import hotkitchen.plugins.configureContentNegotiation
 import hotkitchen.plugins.configureDatabases
-import hotkitchen.plugins.configureRouting
+import hotkitchen.service.configureSigningService
 import io.ktor.server.application.*
 
 fun main(args: Array<String>): Unit =
@@ -12,5 +12,5 @@ fun main(args: Array<String>): Unit =
 fun Application.module(testing: Boolean = false) {
     configureContentNegotiation()
     configureDatabases()
-    configureRouting()
+    configureSigningService()
 }

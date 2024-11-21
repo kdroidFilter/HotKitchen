@@ -11,7 +11,4 @@ fun Application.configureDatabases() {
         user = "ktor_user",
         password = "ktor_password"
     )
-    transaction {
-        log.info("Database connected")
-    }
 }
