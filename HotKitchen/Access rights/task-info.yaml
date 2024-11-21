@@ -1,0 +1,26 @@
+type: edu
+files:
+  - name: src/plugins/Routing.kt
+    visible: true
+    learner_created: false
+  - name: src/resources/application.conf
+    visible: true
+    learner_created: false
+  - name: src/Application.kt
+    visible: true
+    learner_created: false
+  - name: build.gradle
+    visible: true
+    learner_created: false
+  - name: src/plugins/Database.kt
+    visible: true
+    learner_created: false
+  - name: src/Users.kt
+    visible: true
+    learner_created: false
+  - name: test/HotKitchenTest.kt
+    visible: false
+    learner_created: false
+feedback_link: https://hyperskill.org/projects/284/stages/1483/implement#comment
+status: Unchecked
+record: -1

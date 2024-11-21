@@ -1,0 +1,8 @@
+type: framework
+content:
+  - SignIn - SingUp
+  - Token usage
+  - Profile management
+  - Access rights
+  - Data management
+current_task: 0

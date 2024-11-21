@@ -1,0 +1,5 @@
+# Project exclude paths
+/.gradle/
+/HotKitchen/task/build/
+/HotKitchen/task/out/
+/HotKitchen/task/out/production/classes/

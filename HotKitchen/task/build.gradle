@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-serialization:2.0.21"
+    }
+}
+def ktor_version = "3.0.1"
+def jetbrains_exposed = "0.56.0"
+
+apply plugin: 'java'
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'kotlin'
+apply plugin: 'kotlinx-serialization'
+
+repositories {
+    mavenCentral()
+}
+
+
+sourceSets.main.resources.srcDirs = ["src/resources"]
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.21")
+
+    implementation("io.ktor:ktor-server-core:$ktor_version")
+    implementation("io.ktor:ktor-server-netty:$ktor_version")
+    implementation("ch.qos.logback:logback-classic:1.4.12")
+
+    implementation("io.ktor:ktor-server-auth:$ktor_version")
+    implementation("io.ktor:ktor-server-auth-jwt:$ktor_version")
+
+    implementation "io.ktor:ktor-server-content-negotiation:$ktor_version"
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    implementation("org.jetbrains.exposed:exposed-core:$jetbrains_exposed")
+    implementation("org.jetbrains.exposed:exposed-dao:$jetbrains_exposed")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$jetbrains_exposed")
+    implementation("com.zaxxer:HikariCP:5.0.1")
+    implementation('org.postgresql:postgresql:42.7.2')
+
+    testImplementation "io.ktor:ktor-server-test-host:$ktor_version"
+}

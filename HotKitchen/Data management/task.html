@@ -1,0 +1,148 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Great, the staff can add meals to the database, and all authorized users can see them. However, it is not enough. Let's implement the ability for users to place orders.</p>
+<h5 id="objectives">Objectives</h5>
+<p>In this stage, your goal is to create a data class and implement the following API endpoints:</p>
+<ul>
+<li>The<strong> </strong><code class="language-json">Order</code> data class for order logic;</li>
+<li><code class="language-json">POST /order</code> for making an order;</li>
+<li><code class="language-json">POST /order/{orderId}/markReady</code>;</li>
+<li><code class="language-json">GET /orderHistory</code> to get a list of all orders;</li>
+<li><code class="language-json">GET /orderIncomplete</code> to get a list of all incomplete orders.</li>
+</ul>
+<p>To be more specific:</p>
+<ul>
+<li>First of all, you need to create the <code class="language-json">Order</code> class. It should consist of:<br/>
+<code class="language-json">orderId</code> (integer) <em>—</em> a unique id with which you can get the order;<br/>
+<code class="language-json">userEmail</code><strong> </strong>(string) <em>—</em> email of the person who placed the order;<br/>
+<code class="language-json">mealsIds</code><strong> </strong>(Integer[]) — ids of ordered meals;<br/>
+<code class="language-json">price</code> (float) — the total price of all meals;<br/>
+<code class="language-json">address</code> (string) — the<em> </em>customer address;<br/>
+<code class="language-json">status</code> (string)<strong> </strong><em>—</em> <code class="language-json">IN PROGRESS</code><em> </em>or<em> </em><code class="language-json">COMPLETE</code><br/>
+</li>
+<li>Implement the following API endpoints:</li>
+</ul>
+<ol>
+<li><code class="language-json">POST /order</code> for making an order. All authorized users have access to this method.<br/>
+<br/>
+    Users send an array of meal IDs as JSON to make an order. All statuses are <code class="language-json">IN PROGRESS</code> by default. If the order was successfully created, the status code is <code class="language-json">200 OK</code>, and the response should be a fully completed order. Otherwise, the status code is <code class="language-json">400 Bad Request</code></li>
+<li>
+<p><code class="language-json">POST /order/{orderId}/markReady</code> for changing the status. Only users with <em>the</em> <code class="language-json">staff</code> rights can change the status. This method changes the order status to <code class="language-json">COMPLETE</code><br/>
+<br/>
+      Returns status <code class="language-json">200 OK</code> if all is well.<br/>
+      If there is no such order, then respond with <code class="language-json">400 Bad Request</code></p>
+<p>If someone who doesn't have the <code class="language-json">staff</code> rights tries to mark as ready:<br/>
+<em>Response code: </em><code class="language-json">403 Forbidden </code><br/>
+<em>Response body: </em></p>
+<pre><code class="language-json">{
+    "status": "Access denied"
+}</code></pre>
+</li>
+<li>
+<p><code class="language-json">GET /orderHistory</code> to get a list of all orders. All authorized users have access to this method.<br/>
+<em>Response code: </em><code class="language-json">200 OK</code></p>
+</li>
+<li>
+<p><code class="language-json">GET /orderIncomplete</code> to get a list of all incomplete orders. All authorized users have access to this method.<br/>
+<em>Response code: </em><code class="language-json">200 OK</code></p>
+</li>
+</ol>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em><code class="language-json">GET</code> request for <code class="language-json">/order</code> without a token:</em></p>
+<p><em>Response code: </em><code class="language-json">401 Unauthorized</code></p>
+<p><strong>Example 2: </strong><em>a <code class="language-json">POST</code> request for <code class="language-json">/order</code> with wrong meals ids:</em></p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">[1, 2, 1000, 9231923]</code></pre>
+<p><em>Response code: </em><code class="language-json">400 Bad Request</code></p>
+<p><strong>Example 2: </strong><em>a <code class="language-json">POST</code> request for <code class="language-json">/order</code> with correct meals ids:</em></p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">[1, 2]</code></pre>
+<p><em>Response code: </em><code class="language-json">400 Bad Request</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "orderId": 1144772074,
+    "userEmail": "example@gmail.com",
+    "mealsIds": [
+        0,
+        1
+    ],
+    "price": 43.1,
+    "address": "address",
+    "status": "IN PROGRESS"
+}</code></pre>
+<p><strong> <br/>
+  Example 3: </strong><em><code class="language-json">POST</code> request for <code class="language-json">/order/{orderId}/markReady</code> as client</em></p>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Access denied"
+}</code></pre>
+<p><br/>
+<strong>Example 4: </strong><em><code class="language-json">POST</code> request for <code class="language-json">/order/{orderId}/markReady</code> as<strong> </strong>staff</em></p>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "orderId": 1149104263,
+    "userEmail": "example@staff.com",
+    "mealsIds": [1,2,3],
+    "price": 66.0,
+    "address": "address",
+    "status": "COMPLETE"
+}</code></pre>
+<p><strong> <br/>
+  Example 4: </strong><em><code class="language-json">GET</code> request for <code class="language-json">/orderHisotry</code></em></p>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">[
+    {
+        "orderId": 1151045858,
+        "userEmail": "example@client.com",
+        "mealsIds": [
+            1151044915,
+            1151044916,
+            1151044917
+        ],
+        "price": 45.0,
+        "address": "address",
+        "status": "COMPLETE"
+    },
+    {
+        "orderId": 1151258563,
+        "userEmail": "example@gmail.com",
+        "mealsIds": [
+            0,
+            1
+        ],
+        "price": 43.1,
+        "address": "newAddress",
+        "status": "IN PROGRESS"
+    },
+
+]</code></pre>
+<p><strong>Example 5: </strong><em><code class="language-json">GET</code> request for <code class="language-json">/orderIncomplete</code></em></p>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">[
+    {
+        "orderId": 1151258563,
+        "userEmail": "example@gmail.com",
+        "mealsIds": [
+            0,
+            1
+        ],
+        "price": 43.1,
+        "address": "newAddress",
+        "status": "IN PROGRESS"
+    },
+    {
+        "orderId": 1151444488,
+        "userEmail": "example@gmail.com",
+        "mealsIds": [
+            0
+        ],
+        "price": 25.8,
+        "address": "address",
+        "status": "IN PROGRESS"
+    }
+]</code></pre>
+</div>

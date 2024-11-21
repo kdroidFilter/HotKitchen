@@ -1,0 +1,235 @@
+hyperskill_project:
+  id: 284
+  ide_files: https://cogniterra.org/media/attachments/lesson/26933/additional_files.json
+  is_template_based: false
+  use_ide: true
+update_date: "Thu, 01 Jan 1970 00:00:00 UTC"
+stages:
+  - id: 1480
+    step: 22603
+    is_completed: false
+  - id: 1481
+    step: 22604
+    is_completed: false
+  - id: 1482
+    step: 22605
+    is_completed: false
+  - id: 1483
+    step: 22606
+    is_completed: false
+  - id: 1484
+    step: 22607
+    is_completed: false
+topics:
+  0:
+    - title: Data structures
+      theory_id: 40371
+    - title: Abstract and concrete data structures
+      theory_id: 16927
+    - title: Kotlin For Backend Introduction
+      theory_id: 17813
+    - title: "Write, compile, and run"
+      theory_id: 3739
+    - title: "Basic terms: JVM, JRE, JDK"
+      theory_id: 3499
+    - title: Operating systems
+      theory_id: 9704
+    - title: Command line overview
+      theory_id: 8977
+    - title: Parameters and options
+      theory_id: 9746
+    - title: Stack
+      theory_id: 5252
+    - title: HTTP URL
+      theory_id: 6740
+    - title: HTTP messages
+      theory_id: 6752
+    - title: REST
+      theory_id: 7834
+    - title: Postman
+      theory_id: 8512
+    - title: Ktor Setting-up First App
+      theory_id: 17821
+    - title: Ktor Plugins System
+      theory_id: 17829
+    - title: Ktor Routing
+      theory_id: 18480
+    - title: Requests handling
+      theory_id: 19355
+    - title: Response handling
+      theory_id: 20377
+    - title: Ktor Application Architecture
+      theory_id: 19339
+    - title: Exposed Introduction
+      theory_id: 20369
+    - title: Introduction to Kotlin
+      theory_id: 4350
+    - title: "Basic literals: numbers, strings and characters"
+      theory_id: 4351
+    - title: Writing first program
+      theory_id: 4362
+    - title: Values and variables
+      theory_id: 4371
+    - title: Constants and val variables
+      theory_id: 17408
+    - title: Data types
+      theory_id: 4388
+    - title: Comments
+      theory_id: 4406
+    - title: Kotlin style guide. Coding conventions
+      theory_id: 4419
+    - title: Naming variables
+      theory_id: 4389
+    - title: Standard output
+      theory_id: 4425
+    - title: Invoking functions
+      theory_id: 4575
+    - title: Standard input with Java Scanner
+      theory_id: 4445
+    - title: String basics
+      theory_id: 12553
+    - title: String templates
+      theory_id: 4547
+    - title: Boolean type and operations. True and false
+      theory_id: 4515
+    - title: Arithmetic operations
+      theory_id: 4472
+    - title: Increment and decrement
+      theory_id: 10776
+    - title: Build tools
+      theory_id: 4284
+    - title: JAR files
+      theory_id: 4311
+    - title: "Gradle: overview"
+      theory_id: 5075
+    - title: Basic project with Gradle
+      theory_id: 5077
+    - title: Building apps using Gradle
+      theory_id: 7917
+    - title: Gradle build configuration
+      theory_id: 35988
+    - title: "Dependency management: repositories"
+      theory_id: 37189
+    - title: Properties of basic types
+      theory_id: 4455
+    - title: Type conversion
+      theory_id: 4672
+    - title: Reading data with readln
+      theory_id: 11224
+    - title: "When different types meet: type coercion"
+      theory_id: 9506
+    - title: Integers in action
+      theory_id: 4488
+    - title: Comparing numbers. Relational operators
+      theory_id: 4525
+    - title: Declaring functions
+      theory_id: 4580
+    - title: If expression
+      theory_id: 4625
+    - title: Errors in programs
+      theory_id: 11559
+    - title: Nullable and non-nullable types
+      theory_id: 7613
+    - title: Type system
+      theory_id: 9689
+    - title: "Loops: repeat statement"
+      theory_id: 4643
+    - title: While loops
+      theory_id: 4659
+    - title: Objects and their properties
+      theory_id: 11233
+    - title: Unicode
+      theory_id: 7899
+    - title: Characters. Char type
+      theory_id: 4680
+    - title: Ranges
+      theory_id: 4633
+    - title: When expression
+      theory_id: 4631
+    - title: Functional decomposition
+      theory_id: 12668
+    - title: Default arguments
+      theory_id: 4637
+    - title: Named arguments
+      theory_id: 4640
+    - title: Working with strings
+      theory_id: 12561
+    - title: Web development
+      theory_id: 13931
+    - title: What is object-oriented programming
+      theory_id: 3614
+    - title: Declaring classes
+      theory_id: 6200
+    - title: Constructors
+      theory_id: 10740
+    - title: Member functions
+      theory_id: 6364
+    - title: Extension functions
+      theory_id: 6621
+    - title: Call stack
+      theory_id: 11550
+    - title: Scopes
+      theory_id: 17116
+    - title: Inheritance
+      theory_id: 9844
+    - title: Inheritance
+      theory_id: 7770
+    - title: Polymorphism
+      theory_id: 10027
+    - title: Overriding functions
+      theory_id: 7884
+    - title: toString()
+      theory_id: 10193
+    - title: Relational Data Model
+      theory_id: 13785
+    - title: "SQL: structured query language"
+      theory_id: 7054
+    - title: JSON
+      theory_id: 6854
+    - title: IntelliJ IDEA
+      theory_id: 37202
+    - title: Introduction to transactions
+      theory_id: 12144
+    - title: Introduction to PostgreSQL
+      theory_id: 17974
+    - title: Exception
+      theory_id: 7243
+    - title: Hierarchy of exceptions
+      theory_id: 13264
+    - title: Taming exceptions
+      theory_id: 7601
+    - title: Avoiding NPEs. Null safety
+      theory_id: 7619
+    - title: Kotlinx serialization
+      theory_id: 19887
+  1:
+    - title: Introduction to UI/UX
+      theory_id: 14603
+    - title: Layout grids
+      theory_id: 14922
+    - title: Interface elements
+      theory_id: 15253
+    - title: Block-level elements
+      theory_id: 7271
+    - title: Inline elements
+      theory_id: 7518
+    - title: What is CSS
+      theory_id: 7678
+    - title: HTML attributes id and class
+      theory_id: 7527
+    - title: Intro to HTML forms
+      theory_id: 6560
+    - title: HTTP Basic Auth
+      theory_id: 7778
+    - title: Ktor HTML Response
+      theory_id: 20360
+    - title: Tags and Attributes
+      theory_id: 7536
+    - title: HTML page structure
+      theory_id: 6491
+    - title: Status pages
+      theory_id: 19029
+    - title: Basic And Form Authentication
+      theory_id: 20535
+    - title: Regular expression
+      theory_id: 7580

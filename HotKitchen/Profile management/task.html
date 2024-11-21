@@ -1,0 +1,140 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Now you can confidently say that you are done with authorization. You can get the user's email and the user type. However, this is not enough. For the correct functioning of HotKitchen, you need to create a full-fledged user profile. Let's get to it!</p>
+<p>In this stage, you must implement the user profile logic by receiving, adding, updating, and deleting the user information.</p>
+<h5 id="objectives">Objectives</h5>
+<p>Create a user profile, methods to handle it, and Implement the following API endpoints:</p>
+<ul>
+<li><code class="language-json">GET /me</code> to see the complete information on a user;</li>
+<li><code class="language-json">PUT /me</code>  to update user information;</li>
+<li><code class="language-json">DELETE /me</code>  to delete user information.</li>
+</ul>
+<p>Let's discuss it in more detail.</p>
+<ul>
+<li><code class="language-json">GET /me</code> to see the complete information on a user.</li>
+</ul>
+<p>The complete information on the user includes <code class="language-json">id</code>, <code class="language-json">name</code>, <code class="language-json">userType</code>, <code class="language-json">phone</code>, <code class="language-json">email</code>, and <code class="language-json">address</code>:</p>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body: (for example)</em></p>
+<pre><code class="language-json">{
+    "name": "Goose",
+    "userType": "client",
+    "phone": "+79999999999",
+    "email": "example@gmail.com",
+    "address": "address"
+}</code></pre>
+<p>If there is no such user, return <code class="language-json">400 Bad Request</code></p>
+<p><em>Response code: </em><code class="language-json">400 Bad Request</code></p>
+<ul>
+<li><code class="language-json">PUT /me</code>  to update the user information;</li>
+</ul>
+<p>This method receives the complete information about the user and updates the data with it. If there is no information about the user yet, it creates a new one with the specified data.</p>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body: (for example)</em></p>
+<pre><code class="language-json">{
+    "name":"newName",
+    "userType":"newType",
+    "phone":"+79999999999",
+    "email":"example@gmail.com",
+    "address":"newAddress"
+}</code></pre>
+<p></p><div class="alert alert-primary">It is crucial that you cannot change the email. Otherwise, you need to respond with code 400 Bad Request.</div>
+<ol>
+<li>
+<p><code class="language-json">DELETE /me</code>  to delete user information</p>
+</li>
+</ol>
+<p>This method removes all information about the user, including authorization data. If successful:</p>
+<p><em>Response code: </em><code class="language-json">200 OK</code><br/>
+<br/>
+Otherwise:</p>
+<p><em>Response code: </em><code class="language-json">404 Not Found</code></p>
+<p></p><div class="alert alert-primary">Use Bearer authorization to access each method. After all, only a user with a token can be identified.</div>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em><code class="language-json">GET</code> request for <code class="language-json">/me</code> without a token</em></p>
+<p><em>Response code: </em><code class="language-json">401 Unauthorized</code></p>
+<p></p><div class="alert alert-primary">All the following requests using a valid JWT token received by the user with email example@gmail.com</div>
+<p><strong>Example 2: </strong><em><code class="language-json">GET</code> request for <code class="language-json">/me</code></em> <em>by an unregistered user</em></p>
+<p><em>Response code: </em><code class="language-json">400 Bad Request</code></p>
+<p><strong>Example 3: </strong></p>
+<ol>
+<li><em><code class="language-json">PUT</code> request for <code class="language-json">/me</code></em><br/>
+<em>Request body:</em>
+<pre><code class="language-json">{
+    "name":"Goose",
+    "userType":"client",
+    "phone":"+79999999999",
+    "email":"example@gmail.com",
+    "address":"address"
+}</code></pre>
+<em>Response code: </em><code class="language-json">200 OK</code><br/>
+<em>Response body:</em>
+<pre><code class="language-json">{
+    "name":"Goose",
+    "userType":"client",
+    "phone":"+79999999999",
+    "email":"example@gmail.com",
+    "address":"address"
+}</code></pre>
+</li>
+<li><em><code class="language-json">GET</code> request for <code class="language-json">/me</code> with the same token</em><br/>
+<em>Response code: </em><code class="language-json">200 OK </code><br/>
+<em>Response body:</em>
+<pre><code class="language-json">{
+    "name":"Goose",
+    "userType":"client",
+    "phone":"+79999999999",
+    "email":"example@gmail.com",
+    "address":"address"
+}</code></pre>
+</li>
+<li><em><code class="language-json">PUT</code> request for <code class="language-json">/me</code></em> <em>with the same token and new user information (without changing the email)</em><br/>
+<em>Request body:</em>
+<pre><code class="language-json">{
+    "name":"newName",
+    "userType":"newType",
+    "phone":"+79999999999",
+    "email":"example@gmail.com",
+    "address":"newAddress"
+}</code></pre>
+<em>Response code: </em><code class="language-json">200 OK</code><br/>
+<em>Response body:</em>
+<pre><code class="language-json">{
+    "name":"newName",
+    "userType":"newType",
+    "phone":"+79999999999",
+    "email":"example@gmail.com",
+    "address":"newAddress"
+}</code></pre>
+<strong> </strong></li>
+<li><em><code class="language-json">GET</code> request for <code class="language-json">/me</code> with the same token</em><br/>
+<em>Response code: </em><code class="language-json">200 OK </code><br/>
+<em>Response body:</em>
+<pre><code class="language-json">{
+    "name":"newName",
+    "userType":"newType",
+    "phone":"+79999999999",
+    "email":"example@gmail.com",
+    "address":"newAddress"
+}</code></pre>
+</li>
+<li><em><code class="language-json">PUT</code> request for <code class="language-json">/me</code>with the same token but and different email</em><br/>
+<em>Request body:</em>
+<pre><code class="language-json">{
+    "name":"newName",
+    "userType":"newType",
+    "phone":"+79999999999",
+    "email":"NEWEMAIL@gmail.com",
+    "address":"newAddress"
+}</code></pre>
+<em>Response code: </em><code class="language-json">400 Bad Request</code></li>
+</ol>
+<p><strong>Example 4: </strong></p>
+<ol>
+<li><em>First <code class="language-json">DELETE</code> request for <code class="language-json">/me</code> with the same token</em><br/>
+<em>Response code: </em><code class="language-json">200 OK </code><br/>
+</li>
+<li><em>One more <code class="language-json">DELETE</code> request for <code class="language-json">/me</code> with the same token<br/>
+	Response code: </em><code class="language-json">404 Not Found</code></li>
+</ol>
+</div>

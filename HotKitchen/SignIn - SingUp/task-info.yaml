@@ -1,0 +1,44 @@
+type: edu
+files:
+  - name: src/plugins/Routing.kt
+    visible: true
+    learner_created: false
+  - name: src/resources/application.conf
+    visible: true
+    learner_created: false
+  - name: src/Application.kt
+    visible: true
+    learner_created: false
+  - name: test/HotKitchenTest.kt
+    visible: false
+    learner_created: false
+  - name: build.gradle
+    visible: true
+    learner_created: false
+  - name: src/plugins/Database.kt
+    visible: true
+    learner_created: true
+  - name: src/plugins/ContentNegociation.kt
+    visible: true
+    learner_created: true
+  - name: src/model/User.kt
+    visible: true
+    learner_created: true
+  - name: src/model/SigningTasksRepository.kt
+    visible: true
+    learner_created: true
+  - name: src/model/UsersTable.kt
+    visible: true
+    learner_created: true
+  - name: src/service/SigningService.kt
+    visible: true
+    learner_created: true
+feedback_link: https://hyperskill.org/projects/284/stages/1480/implement#comment
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #1
+
+    Cannot register a new user. Wrong response message or status code.
+  time: "Thu, 21 Nov 2024 13:06:14 UTC"
+record: -1

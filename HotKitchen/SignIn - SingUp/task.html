@@ -1,0 +1,98 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Every modern application has registration and authorization components. They help identify users, build offers depending on their preferences, and store information about people in your application (for example, user addresses). Let's add the ability to register a new user.</p>
+<p>In the first stage, you need to implement the registration and authorization features using a database. You should be able to register a new user and later sign them in with the same credentials. All data is stored in the database and should be preserved even if the server is restarted.</p>
+<h5 id="objectives">Objectives</h5>
+<p>In this stage, your goal is to run the <code class="language-json">Ktor</code> application, run a <code class="language-json">PostgreSQL</code> database, and create several endpoints.</p>
+<ul>
+<li>Create and run the <code class="language-json">Ktor</code> application on the <code class="language-json">28852</code> port;</li>
+<li>Run a <code class="language-json">PostgreSQL</code> database and connect the application to it;</li>
+<li>Implement the following API endpoints:</li>
+</ul>
+<p><code class="language-json">POST /signup</code> for registration.</p>
+<p>This method accepts an <code class="language-json">email</code>, <code class="language-json">userType</code>, and <code class="language-json">password</code> as JSON. If the registration was successful, the response should be the following:</p>
+<p><em>Response code: </em> <code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Signed Up"
+}</code></pre>
+<p>If the registration failed, the response should be:</p>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Registration failed"
+}</code></pre>
+<p></p><div class="alert alert-primary">Creating roles like this is purely for educational purposes because if a hacker knows the API, he can easily create "staff" users. When creating a production API, create such roles manually or using the admin panel.</div>
+<p><code class="language-json">POST /signin</code> for authorization.</p>
+<p>This method accepts an <code class="language-json">email</code> and a <code class="language-json">password</code> as JSON. If an authorization was successful, the response is:</p>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Signed In"
+}</code></pre>
+<p>If an authorization failed, this response follows:</p>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Authorization failed"
+}</code></pre>
+<ol>
+</ol>
+<p></p><div class="alert alert-warning">This project was recently updated to use Ktor <em>2.0.x</em>. If you are getting back to this project after some time, please refer to this migrating guide <a href="https://ktor.io/docs/migrating-2.html" rel="noopener noreferrer nofollow" target="_blank">here</a>.</div>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong></p>
+<ol>
+<li><em>First <code class="language-json">POST</code> request for <code class="language-json">/signup</code></em><br/>
+<em>Request body:</em>
+<pre><code class="language-json">{
+    "email": "example@domain.name",
+    "userType": "staff",
+    "password": "awesomepass123"
+}
+</code></pre>
+<em>Response: </em><code class="language-json">200 OK</code><br/>
+<em>Response body:</em>
+<pre><code class="language-json">{
+    "status": "Signed Up"
+}</code></pre>
+</li>
+<li><em>One more <code class="language-json">POST</code> request for <code class="language-json">/signup</code> with the same email<br/>
+	Request body:</em>
+<pre><code class="language-json">{
+    "email": "example@domain.name",
+    "userType": "staff",
+    "password": "awesomepass123"
+}
+</code></pre>
+<em> Response: <code class="language-json">403 Forbidden</code><br/>
+	Response body:</em>
+<pre><code class="language-json">{
+    "status": "Registration failed"
+}</code></pre>
+<em> Registration failed because the user with this email is already registered.</em></li>
+</ol>
+<p><strong>Example 2:</strong> <em>a <code class="language-json">POST</code> request for <code class="language-json">/signin</code> with the wrong email and password</em></p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">{
+    "email": "example@domain.name",
+    "password": "wrongpass"
+}
+</code></pre>
+<p><em>Response: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Authorization failed"
+}</code></pre>
+<p><strong>Example 3:</strong> <em>a</em><em> <code class="language-json">POST</code> request for <code class="language-json">/signin</code></em></p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">{
+    "email": "example@domain.name",
+    "password": "awesomepass123"
+}
+</code></pre>
+<p><em>Response: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Signed In"
+}</code></pre>
+</div>

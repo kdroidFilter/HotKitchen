@@ -1,0 +1,162 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>You have learned how to log in and register a user with an email address and a password. However, it is inconvenient, as you need to access resources to pass an email and a password for authentication. Moreover, storing a password is very insecure, especially in the local storage. If an attacker steals your password (which happens rather often), they can do whatever they want with your accounts. However, if an attacker steals the token, the hacker won't do much; for example, they will not be able to change your password, and you won't lose access to it.</p>
+<p>In this stage, you need to implement the authorization by Bearer JWT token, implement the password and email validation, and update the auth statuses.</p>
+<h5 id="objectives">Objectives</h5>
+<p>In this stage, your goal is to update the existing methods, improve the authorization logic, and update the following API endpoints:</p>
+<ul>
+<li><code class="language-json">POST /signup</code> should return a JWT token and the corresponding statuses</li>
+<li><code class="language-json">POST /signin</code> should return a JWT token and the corresponding statuses</li>
+<li><code class="language-json">GET /validate</code> for token validation. This method checks if the token is valid.</li>
+</ul>
+<p>Apart from it:</p>
+<ul>
+<li><code class="language-json">POST /signup</code> now should return the JWT token and corresponding statuses:</li>
+</ul>
+<p>If the registration was successful:</p>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "token": "&lt;JWT token&gt;"
+}</code></pre>
+<p>If <code class="language-json">email</code><em> </em>was invalid:</p>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Invalid email"
+}</code></pre>
+<p></p><div class="alert alert-primary"><br/>
+A valid email address consists of an email prefix and an email domain, both in acceptable formats. Use only letters, numbers, and special symbols:
+
+<p><em>example@mail.com</em> — a valid email</p>
+<p><em>123.wrong.email</em> — an invalid email<br/>
+</p></div>
+<p>If the <code class="language-json">password</code> was invalid:</p>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Invalid password"
+}</code></pre>
+<p></p><div class="alert alert-primary"><br/>
+A valid password is a password that is at least six characters long and consists of letters and numbers. For example:
+
+<p><em>Example1234</em> — a valid password</p>
+<p><em>1234</em> — an invalid password<br/>
+</p></div>
+<p>If <code class="language-json">user</code><em> already exists</em>:</p>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "User already exists"
+}</code></pre>
+<ul>
+<li><code class="language-json">POST /signin</code> now should return the JWT token and corresponding statuses:</li>
+</ul>
+<p>If the authorization was successful:</p>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "token": "&lt;JWT token&gt;"
+}</code></pre>
+<p>If the authorization failed:</p>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Invalid email or password"
+}</code></pre>
+<ul>
+<li><code class="language-json">GET /validate</code> for token validation. This method checks if a token is valid.</li>
+</ul>
+<p>If a token is valid:</p>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body: </em></p>
+<pre><code class="language-json">Hello, &lt;userType&gt; &lt;email&gt;</code></pre>
+<p>Where <code class="language-json">&lt;userType&gt;</code> and <code class="language-json">&lt;email&gt;</code> is <code class="language-json">userType</code><em> </em>and<em> </em><code class="language-json">email</code> of the user in whose name the token was received.</p>
+<p>If a token is invalid:</p>
+<p><em>Response code: </em><code class="language-json">401 Unauthorized</code></p>
+<p></p><div class="alert alert-primary">All authorization must be done using a Bearer token in headers.</div>
+<h5 id="examples">Examples</h5>
+<p><strong>Example 1: </strong><em><code class="language-json">POST</code> request for <code class="language-json">/signin</code> with the invalid email</em></p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">{
+    "email":"example.gmail.com",
+    "userType":"client",
+    "password":"password123"
+}</code></pre>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Invalid email"
+}</code></pre>
+<p><strong>Example 2:</strong> <em><code class="language-json">POST</code> request for <code class="language-json">/signin</code> with the invalid password</em></p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">{
+    "email":"example@gmail.com",
+    "userType":"client",
+    "password":"password"
+}</code></pre>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Invalid password"
+}</code></pre>
+<p><strong>Example 3:</strong> <em><code class="language-json">POST</code> request for <code class="language-json">/signup</code> with invalid email and password</em></p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">{
+    "email":"stranger@gmail.com",
+    "password":"wrongPassword"
+}</code></pre>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code><br/>
+<em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "Invalid email or password"
+}</code></pre>
+<p><strong>Example 4: </strong><em>first <code class="language-json">POST</code> request for <code class="language-json">/signin</code></em></p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">{
+    "email":"example@gmail.com",
+    "userType":"client",
+    "password":"password123"
+}</code></pre>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyVHlwZSI6ImNsaWVudCIsImV4cCI6MTY0NjA4NDk2NSwiZW1haWwiOiJleGFtcGxlQGdtYWlsLmNvbSJ9.W8maMBRlbI0z3Qqtv5ONUmRsP6ZlWooWBje7IuwhLUQ"
+}</code></pre>
+<p><em>One more <code class="language-json">POST</code> request for <code class="language-json">/signin</code></em>with the same email</p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">{
+    "email":"example@gmail.com",
+    "userType":"client",
+    "password":"password123"
+}</code></pre>
+<p><em>Response code: </em><code class="language-json">403 Forbidden</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">{
+    "status": "User already exists"
+}</code></pre>
+<p></p><div class="alert alert-primary">Registration failed because the user with this email is already registered.</div>
+<p><strong>Example 5: </strong><code class="language-json">POST</code><em> request for <code class="language-json">/signup</code></em><em> with valid credentials</em></p>
+<p><em>Request body:</em></p>
+<pre><code class="language-json">{
+    "email":"example@gmail.com",
+    "password":"password123"
+}</code></pre>
+<p><em>Response code: </em><code class="language-json">200 OK</code> </p>
+<p>R<em>esponse body:</em></p>
+<pre><code class="language-json">{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyVHlwZSI6ImNsaWVudCIsImV4cCI6MTY0NjA4NTI2MSwiZW1haWwiOiJleGFtcGxlQGdtYWlsLmNvbSJ9.kcxz3UtghuJpOdRT-cvJRGWbBLRvhSqvGZjROVvchFY"
+}</code></pre>
+<p><em><code class="language-json">GET</code><span style="color: #66cc66;"> </span>request for <code class="language-json">/validate</code> with the same Bearer token</em></p>
+<p><em>Request headers:</em></p>
+<pre><code class="language-json">Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyVHlwZSI6Im1lbSIsImV4cCI6MTY0NjA4MzkzNSwiZW1haWwiOiJtZW1AZ21haWwuY29tIn0.7KSaeH2khQbsH9AYF1Wr9NzjtnXNd2Ki5X1fWNsVGTY</code></pre>
+<p><em>Response code: </em><code class="language-json">200 OK</code></p>
+<p><em>Response body:</em></p>
+<pre><code class="language-json">Hello, client example@gmail.com</code></pre>
+<p><strong>Example 6:</strong> <em><code class="language-json">GET</code><span style="color: #66cc66;"> </span>request for <code class="language-json">/validate</code> with the wrong Bearer token</em></p>
+<p><em>Request headers:</em></p>
+<pre><code class="language-json">Authorization: Bearer something.very.strange</code></pre>
+<p><em>Response code: </em><code class="language-json">401 Unauthorized </code></p>
+<p><strong>Example 7:</strong><em> <code class="language-json">GET</code> request for <code class="language-json">/validate</code> without token</em></p>
+<p><em>Response code: </em><code class="language-json">401 Unauthorized </code></p>
+</div>
