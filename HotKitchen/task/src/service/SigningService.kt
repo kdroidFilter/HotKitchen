@@ -4,14 +4,10 @@ import hotkitchen.model.SigningTasksRepositoryImpl
 import hotkitchen.model.Status
 import hotkitchen.model.User
 import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
-import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
 fun Application.configureSigningService() {
     val repository = SigningTasksRepositoryImpl()
@@ -25,6 +21,15 @@ fun Application.configureSigningService() {
                 repository.signup(user = user)
                 call.respond(HttpStatusCode.OK, Status("Signed Up"))
             }
+        }
+        post("/signin") {
+            val user = call.receive<User>()
+            if (repository.signin(User(email = user.email, password = user.password))) {
+                call.respond(HttpStatusCode.OK, Status("Signed In"))
+            } else {
+                call.respond(HttpStatusCode.Forbidden, Status("Authorization failed"))
+            }
+
         }
     }
 }
