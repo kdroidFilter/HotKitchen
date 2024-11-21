@@ -33,18 +33,34 @@ files:
   - name: src/service/SigningService.kt
     visible: true
     learner_created: true
-  - name: test/test2.kt
-    visible: true
-    learner_created: true
   - name: src/model/Status.kt
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/22603#comment
 status: Failed
 feedback:
-  message: |-
-    Wrong answer in test #1
+  message: |2
 
-    Cannot register a new user. Wrong response message or status code.
-  time: "Thu, 21 Nov 2024 16:19:22 UTC"
+    FAILURE: Build failed with an exception.
+
+    * What went wrong:
+    Could not resolve all files for configuration &#39;classpath&#39;.
+    &gt; Could not resolve com.github.hyperskill:hs-gradle-plugin:release-SNAPSHOT.
+      Required by:
+          unspecified:unspecified:unspecified
+       &gt; Could not resolve com.github.hyperskill:hs-gradle-plugin:release-SNAPSHOT.
+          &gt; Unable to load Maven meta-data from https://packages.jetbrains.team/maven/p/hyperskill-hs-test/maven/com/github/hyperskill/hs-gradle-plugin/release-SNAPSHOT/maven-metadata.xml.
+             &gt; Could not HEAD &#39;https://packages.jetbrains.team/maven/p/hyperskill-hs-test/maven/com/github/hyperskill/hs-gradle-plugin/release-SNAPSHOT/maven-metadata.xml&#39;. Received status code 418 from server: Blocked by NetFree
+       &gt; Could not resolve com.github.hyperskill:hs-gradle-plugin:release-SNAPSHOT.
+          &gt; Unable to load Maven meta-data from https://jitpack.io/com/github/hyperskill/hs-gradle-plugin/release-SNAPSHOT/maven-metadata.xml.
+             &gt; Could not HEAD &#39;https://jitpack.io/com/github/hyperskill/hs-gradle-plugin/release-SNAPSHOT/maven-metadata.xml&#39;. Received status code 418 from server: Blocked by NetFree
+
+    * Try:
+    &gt; Run with --stacktrace option to get the stack trace.
+    &gt; Run with --info or --debug option to get more log output.
+    &gt; Run with --scan to get full insights.
+    &gt; Get more help at https://help.gradle.org.
+
+    BUILD FAILED in 846ms
+  time: "Thu, 21 Nov 2024 16:20:44 UTC"
 record: -1
